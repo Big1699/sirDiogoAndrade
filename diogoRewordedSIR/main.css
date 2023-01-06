@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    line-height: 1.6;
+}
+
+p {
+    text-align: justify;
+}
+
+a { text-decoration: none }
+
+nav{
+    background-color: #003147;
+}
+
+#botao
+{
+    width: 80px;
+}
+
+.nav-link
+{
+    color: #FFF;  
+}
+
+.nav-link:hover{
+    color: rgb(56, 137, 236);  
+}
+
+#icon-ul{
+    color:#FFF;
+}
+
+.dark {
+    background-color: rgb(40, 39, 39);
+    
+}
+
+.dark #botao
+{
+    background-color: #000000;
+}
+
+.dark nav{
+    background-color: #636161;
+}
+
+.dark #about-me{
+    color:#FFF;
+}
+
+.dark #contacts_form{
+    background-color: rgb(57, 56, 56);
+}
+
+.dark #my_experience{
+    background-color: rgb(57, 56, 56);
+}
+
+.dark #education{
+    background-color: rgb(57, 56, 56);
+}
+
+.dark #hobbies{
+    background-color: rgb(57, 56, 56);
+}
+
+.dark #projects{
+    background-color: rgb(57, 56, 56);
+}
+
+.dark #my_experience .card{
+    background-color: rgb(57, 56, 56);
+}
+
+.dark #education .card{
+    background-color: rgb(57, 56, 56);
+}
+
+.dark #skills_languages{
+    background-color: rgb(57, 56, 56);
+}
+
+#skills_languages{
+    background-color: #003147; color: #FFF; 
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 1);
+    gap: 3rem;
+}
+
+#languages{
+    background-color: #003147; color: #FFF; 
+}
+
+#my_experience{
+    margin-top: 200px;
+    background-color: #003147; 
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 1);
+}
+
+#my_experience .card{
+    border:none;
+    background-color: #003147;
+    color: #FFF;
+}
+
+#my_experience h1
+{
+    color: #FFF;
+}
+
+#education h1
+{
+    color: #FFF;
+}
+
+#education{
+    margin-top: 200px;
+    background-color: #003147; 
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 1);
+}
+
+#education .card{
+    border:none;
+    background-color: #003147;
+    color: #FFF;
+}
+
+#projects{
+    margin-top: 200px;
+    background-color: #003147;
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 1);
+}
+
+#projects #titulo
+{
+    color: #fff;
+}
+
+#projects #titulo2
+{
+    color: #fff;
+}
+
+#projects a .icon{
+    
+    font-size: 40px;
+    color: #000000;
+    text-align: center;
+    width: 100%;
+    text-align: left;
+}
+
+#hobbies{
+    margin-top: 200px;
+    background-color: #003147; color: rgb(0, 0, 0); 
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 1);
+}
+
+#hobbies #titulo{
+    color: #FFF;
+}
+
+#contacts_form { 
+    margin-top: 200px;
+    background-color: #003147; color: #FFF;
+    box-shadow: 0 35px 55px rgba(0, 0, 0, 1);
+    margin-bottom: 100px;
+}
+
+#contacts_form a .text { 
+    margin-left: 10px;
+    color: #FFF; 
+}
+
+#contacts_form ul { list-style: none; }
+
+
+#contacts_form .icon i {
+    width: 80px;
+    font-size: 40px;
+    color: #a4dcf7;
+}
+
+.map-container-3{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+  }
+  .map-container-3 iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:80%;
+    position:absolute;
+  }
