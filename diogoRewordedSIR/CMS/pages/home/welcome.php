@@ -15,5 +15,6 @@ require_once "../../navbars/navbaruser.php";
 ?>
 <h1> Hello <?php echo $username ?></h1>
 <p>My first paragraph.</p>
+<a href="../../auth/logout.php">Logout</a>
 </body>
 </html>

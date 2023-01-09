@@ -56,7 +56,7 @@
             // Se o user já fez login
             if(isset($_SESSION['loggedin'])) { ?>
                 <li class="nav-item">
-                <a class="nav-link" href="./pages/home/welcome.php">CMS</a>
+                <a class="nav-link" href="./CMS/pages/home/welcome.php">CMS</a>
               </li>
               <?php } else { ?>
                 <li class="nav-item">
