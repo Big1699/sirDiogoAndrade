@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+<?php
+require './CMS/db/connection.php';
+$pdo=pdo_connect_mysql();
+?>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
@@ -69,34 +73,26 @@
   </nav>
 
 <!-- About Me -->
+<?php
+    $stmtMe = $pdo->prepare('SELECT * from aboutme');
+    $stmtMe->execute();
+    
+     # definir o fetch mode
+    $stmtMe->setFetchMode(PDO::FETCH_ASSOC);
+    $dados=$stmtMe->fetch();
+?>
+
 <section id="about-me" class="container py-5">
     <div class="row row-cols-1 row-cols-xl-2">
         <div class="col pb-5">
             <div class="image">
-                <img src="./img/fotodiogo.jpg" class="img-fluid" alt="">
+                <img src="./img/<?php echo $dados['filename']?>" class="img-fluid" alt="">
             </div> 
         </div>
         <div class="col">
             <h1 class="mb-5">About Me:</h1>
             <p>
-                Hello, i'm Diogo Andrade, i'm 23 years old and i'm an Informatic Engineer Student at
-                Instituto Politécnico de Viana do Castelo.
-            </p>
-            <p>Since I was a kid, I always liked Informatics, started playing pc games very early, searching about the
-                tech world and started using
-                some tech tools at a very young age.</p>
-    
-            <p>
-                I had the oportunity to follow a good part of the thecnology evolution, and that fast evolotuion made me
-                want to know more about informatic
-                As soon as I entered Highschool, I started my informatics world jorney, as you can see on my Education.
-            </p>
-            <p>
-                Speaking about hobbies, since I was kid, I was a roller hockey goalkeeper and currently I am a
-                Coach.
-                I had the oportunity to win some titles, including national and european trophies, and being honored
-                by the town hall for my team achievments.
-                But most importantly, I got values ​​and mates that will accompany me for the rest of my life.
+                <?php echo $dados['description'] ?>
             </p>
         </div>
     </div>
@@ -108,62 +104,40 @@
         <div class="col p-5">
 
             <h3 class="text-center">Skills</h3>
+            <?php
+            $stmtskills = $pdo->prepare('SELECT * from skillslanguages WHERE type = 0');
+            $stmtskills->execute();
+    
+            # definir o fetch mode
+            $stmtskills->setFetchMode(PDO::FETCH_ASSOC);
 
-            <!-- Progress Bars das Linguagens -->
-            <div class="mb-5">
-                <p class="h6">HTML</p>
+            while($dadosskills=$stmtskills->fetch()){ ?>
+                <div class="mb-5">
+                <p class="h6"><?php echo $dadosskills['name']?></p>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $dadosskills['level']?>%"></div>
                 </div>
             </div>
-            <div class="mb-5">
-                <p class="h6">Java</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                </div>
-            </div>
-            <div class="mb-5">
-                <p class="h6">C#</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                </div>
-            </div>
-            <div class="mb-5">
-                <p class="h6">C</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                </div>
-            </div>
-            <div class="mb-5">
-                <p class="h6">Ionic</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                </div>
-            </div>
-
+            <?php }?>
         </div>
 
         <div class="col p-5">
             <h3 class="text-center">Languages</h3>
-            <!-- Progress Bars das Linguagens -->
-            <div class="mb-5">
-                <p class="h6">Portuguese</p>
+            <?php
+            $stmtskills = $pdo->prepare('SELECT * from skillslanguages WHERE type = 1');
+            $stmtskills->execute();
+    
+            # definir o fetch mode
+            $stmtskills->setFetchMode(PDO::FETCH_ASSOC);
+
+            while($dadosskills=$stmtskills->fetch()){ ?>
+                <div class="mb-5">
+                <p class="h6"><?php echo $dadosskills['name']?></p>
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $dadosskills['level']?>%"></div>
                 </div>
             </div>
-            <div class="mb-5">
-                <p class="h6">English</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-                </div>
-            </div>
-            <div class="mb-5">
-                <p class="h6">Spanish</p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 60%"></div>
-                </div>
-            </div>
+            <?php }?>
         </div>
 
     </div>
@@ -173,7 +147,7 @@
 
 <section id="my_experience" class="container py-5">
     <h1 class="text-center mb-5">My Experience</h1>
-
+    
     <div class="card p-3 mb-5">
         <div class="row row-cols-1 row-cols-sm-2">
             <div class="col text-center align-self-center">

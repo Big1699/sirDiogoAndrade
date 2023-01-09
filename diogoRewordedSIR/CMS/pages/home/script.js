@@ -1,120 +1,122 @@
 window.addEventListener("load", () => {
-    let taxes = {
-        710: 0,
-        1015: 11.3,
-        1577: 17.2,
-        2109: 21.9,
-        5241: 32.3,
-        11384: 39.2,
-        25505: 43.8,
-    };
-    let typeMealAllowance = document.getElementById("meal_allowance");
-    let mealAllowance = document.getElementById("meal_allowance_amount");
-    let mealDays = document.getElementById("meal_days");
+  
+    let SubRefType = document.getElementById("SubRefType");
+    let SubRefValue = document.getElementById("SubRefValue");
+    let days = document.getElementById("days");
 
-    typeMealAllowance.addEventListener("change", () => {
-        if (typeMealAllowance.value === "no_allowance") {
-            mealAllowance.value = 0;
-            mealDays.value = 0;
-            mealAllowance.disabled = true;
-            mealDays.disabled = true;
+    SubRefType.addEventListener("change", () => {
+        if (SubRefType.value === "no_allowance") {
+            SubRefValue.value = 0;
+            days.value = 0;
+            SubRefValue.disabled = true;
+            days.disabled = true;
         } else {
-            mealAllowance.disabled = false;
-            mealDays.disabled = false;
+            SubRefValue.disabled = false;
+            days.disabled = false;
         }
     });
 
-    mealDays.addEventListener("change", () => {
-        //if already exists error message delete it
-        if (mealDays.parentNode.querySelector("span")) {
-            mealDays.parentNode.querySelector("span").remove();
-            mealDays.style.border = "1px solid #000000";
+    days.addEventListener("change", () => {
+       
+        if (days.parentNode.querySelector("span")) {
+            days.parentNode.querySelector("span").remove();
+            days.style.border = "1px solid #000000";
         }
-        if (mealDays.value > 31 || mealDays.value < 1) {
-            mealDays.style.border = "1px solid red";
+        if (days.value > 31 || days.value < 1) {
+            days.style.border = "1px solid red";
             let span = document.createElement("span");
-            span.innerHTML = "Please enter a valid number between 1 and 31";
+            span.innerHTML = " >=1<=31";
             span.style.color = "red";
             span.style.fontWeight = "bold";
-            mealDays.parentNode.appendChild(span);
+            days.parentNode.appendChild(span);
         }
     });
 
-    function getTaxRate(grossSalary, taxTable) {
-        for (let salary in taxTable) {
-            if (salary >= grossSalary) {
-                return taxTable[salary];
-            }
+    function irsTAX(SalaryBase) {
+        let irs;
+      
+        if (SalaryBase <= 710) {
+          return 0;
+        } else if (SalaryBase > 710 && SalaryBase <= 1015) {
+          irs = SalaryBase * 0.113;
+          return irs;
+        } else if (SalaryBase > 1015 && SalaryBase <= 1577) {
+          irs = SalaryBase * 0.172;
+          return irs;
+        } else if (SalaryBase > 1577 && SalaryBase <= 2109) {
+          irs = SalaryBase * 0.219;
+          return irs;
+        } else if (SalaryBase > 2109 && SalaryBase <= 5241) {
+          irs = SalaryBase * 0.323;
+          return irs;
+        } else if (SalaryBase > 5241 && SalaryBase <= 11384) {
+          irs = SalaryBase * 0.392;
+          return irs;
+        } else if (SalaryBase > 11384) {
+          irs = SalaryBase * 0.438;
+          return irs;
         }
-        return 43.8;
+      }
+      
+    
+    
+
+    function SubRefTypeAmount(SubRefType,SubRefValue,days){
+
+
+        if(SubRefType =='no_allowance'){
+            return 0;
+        }else if(SubRefType =='money'){
+            
+            let dif = SubRefValue - 4.77;
+    
+            return dif*days;
+        }else{
+
+            let dif = SubRefValue - 7.637;
+    
+            return dif*days;
+        }
+    
     }
 
-    function calculateMealAllowance(
-        netSalary,
-        grossSalary,
-        typeMealAllowance,
-        mealAllowance,
-        mealDays
-    ) {
-        let mealAllowanceTaxed = 0;
-        if (typeMealAllowance === "no_allowance") {
-            return {netSalary: netSalary, grossSalary: grossSalary};
-        } else if (typeMealAllowance === "card") {
-            if (mealAllowance >= 7.33) {
-                mealAllowanceTaxed = mealAllowance - 7.33;
-                grossSalary = grossSalary + (mealAllowance - 7.33) * mealDays;
-                netSalary = netSalary + 7.33 * mealDays;
-            } else {
-                netSalary = netSalary + mealAllowance * 22;
-            }
-        } else if (typeMealAllowance === "money") {
-            if (mealAllowance >= 4.57) {
-                mealAllowanceTaxed = mealAllowance - 4.57;
-                grossSalary = grossSalary + (mealAllowance - 4.57) * mealDays;
-                netSalary = netSalary + 4.57 * 22;
-            } else {
-                netSalary = netSalary + mealAllowance * mealDays;
-            }
-        }
-        return {netSalary: netSalary, grossSalary: grossSalary, mealAllowanceTaxed: mealAllowanceTaxed};
+    function ssTAX(SalaryBase){
+
+
+        let ss = SalaryBase * 0.11;
+        return ss;
     }
 
-    function calculateNetSalary() {
-        let netSalaryTemp = 0;
-        let grossSalary = +document.getElementById("base_salary").value;
-        let typeMealAllowance = document.getElementById("meal_allowance").value;
-        let mealAllowance = +document.getElementById("meal_allowance_amount").value;
-        const mealDays = +document.getElementById("meal_days").value;
-        const result = calculateMealAllowance(
-            netSalaryTemp,
-            grossSalary,
-            typeMealAllowance,
-            mealAllowance,
-            mealDays
+    function Calculate() {
+        
+        let SalaryBase = +document.getElementById("SalaryBase").value;
+        let SubRefType = document.getElementById("SubRefType").value;
+        let SubRefValue = +document.getElementById("SubRefValue").value;
+        let days = +document.getElementById("days").value;
+        const result = SubRefTypeAmount(
+            SubRefType,
+            SubRefValue,
+            days,
         );
-        netSalaryTemp = result.netSalary;
-        grossSalary = result.grossSalary;
-        const taxOwed = getTaxRate(grossSalary, taxes);
 
-        const descontos_ss = grossSalary * (11 / 100);
-        const descontos_irs = grossSalary * (taxOwed / 100);
+        const resultirs= irsTAX(SalaryBase);
+        const resultss = ssTAX(SalaryBase);
+        const gross= SalaryBase + result;
+        const LiquidSalary = result + SalaryBase-resultirs-resultss;
 
-        const netSalary =
-            grossSalary - descontos_irs - descontos_ss + netSalaryTemp;
-        document.getElementById("net_salary").textContent = netSalary.toFixed(2);
-        document.getElementById("descontos_irs").textContent =
-            descontos_irs.toFixed(2);
-        document.getElementById("descontos_ss").textContent =
-            descontos_ss.toFixed(2);
-        document.getElementById("gross_salary").textContent =
-            grossSalary.toFixed(2);
-        document.getElementById("taxes").textContent = taxOwed.toFixed(2) + "%";
-        document.getElementById("meal_allowance_value").textContent =
-            (mealDays * mealAllowance).toFixed(2);
-        document.getElementById("meal_allowance_taxed").textContent =
-            (result.mealAllowanceTaxed * mealDays).toFixed(2);
+       
+    
+        document.getElementById("GrossSalary").textContent = gross;
+        document.getElementById("SubRefValue").textContent =
+            result;
+        document.getElementById("resultirs").textContent =
+        resultirs;
+        document.getElementById("resultss").textContent =
+        resultss;
+        document.getElementById("LiquidSalary").textContent = LiquidSalary;
+        
     }
 
-    const calculateButton = document.getElementById("calculate");
-    calculateButton.addEventListener("click", calculateNetSalary);
+    const bt_Calculate = document.getElementById("Calculate");
+    bt_Calculate.addEventListener("click", Calculate);
 });

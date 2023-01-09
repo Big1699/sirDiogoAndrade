@@ -31,7 +31,7 @@ if (isset($_POST['uploadBtn']) == 'Create') {
             $stmt = $pdo->prepare('INSERT INTO experience (jobname,date,companyname,location,filename) VALUES (?, ?, ?, ?,?)');
 
               $stmt->bindParam(1, $dados[0], PDO::PARAM_STR);
-              $stmt->bindParam(2, $dados[1]);
+              $stmt->bindParam(2, $dados[1] );
               $stmt->bindParam(3, $dados[2], PDO::PARAM_STR);
               $stmt->bindParam(4, $dados[3], PDO::PARAM_STR);
               $stmt->bindParam(5, $newFileName);

@@ -36,9 +36,11 @@ if (isset($_GET['id'])) {
 
         <label for="description">Name</label>
         <input type="text" name="description" placeholder="Description" value="<?=$text['description']?>" id="description">
-        <label for="filename">Filename</label>
-        <input type="text" min="0" max="100" name="filename" placeholder="Level" value="<?=$text['filename']?>" id="filename">
-        <input type="submit" value="Update">
+        <span class="file-name">Filename:</span>
+        <label for="filename">
+          <input type="file" id="filename" name="filename">
+        </label>
+        <input type="submit" name="uploadBtn" value="Create">
     </form>
     <?php if ($msg): ?>
     <p><?=$msg?></p>

@@ -33,23 +33,23 @@ require_once "../../navbars/navbaruser.php";
     <form>
   <div class="form-group m-4">
     <label for="base_salary">Base Salary</label>
-    <input type="number" class="form-control" id="base_salary" placeholder="Enter Base Salary" required>
+    <input type="number" class="form-control" id="SalaryBase" placeholder="Enter Base Salary" required>
   </div>
   <div class="form-group m-4">
     <label for="meal_allowance">Meal Allowance</label>
-    <select class="form-control" name="meal_allowance" id="meal_allowance" required>
+    <select class="form-control" name="meal_allowance" id="SubRefType" required>
       <option value="no_allowance">No meal allowance</option>
       <option value="card">Meal Card</option>
       <option value="money">Money</option>
     </select>
   </div>
   <div class="form-group m-4">
-    <label for="meal_allowance_amount">Meal Allowance Amount</label>
+    <label for="meal_allowance_amount">Meal Allowance Amount per day</label>
     <input
       required
       type="number"
       class="form-control"
-      id="meal_allowance_amount"
+      id="SubRefValue"
       placeholder="Enter Meal Allowance Amount"
       value="0"
       disabled
@@ -61,7 +61,7 @@ require_once "../../navbars/navbaruser.php";
       required
       type="number"
       class="form-control"
-      id="meal_days"
+      id="days"
       placeholder="Enter Meal Days"
       value="0"
       disabled
@@ -72,18 +72,16 @@ require_once "../../navbars/navbaruser.php";
     <div class="col-sm-2"></div>
 
     <div class="col-sm-4 m-4">
-    <p><strong>Your gross salary is: </strong><span id="gross_salary"></span></p>
-    <p><strong>The taxes you pay are:</strong> <span id="taxes"></span></p>
-    <p><strong>The ammout you receive as meal allowance: </strong><span id="meal_allowance_value"></span></p>
-    <p><strong>Meal allowance that is taxed:</strong> <span id="meal_allowance_taxed"></span></p>
-    <p> <strong>IRS tax:</strong> <span id="descontos_irs"></span></p>
-    <p><strong>SS tax:</strong> <span id="descontos_ss"></span></p>
-    <p><strong>Your net salary is:</strong> <span id="net_salary"></span></p>
+    <p><strong>Your gross salary is: </strong><span id="GrossSalary"></span></p>
+    <p><strong>Meal allowance ammount received: </strong><span id="SubRefValue"></span></p>
+    <p> <strong>IRS tax:</strong> <span id="resultirs"></span></p>
+    <p><strong>SS tax:</strong> <span id="resultss"></span></p>
+    <p><strong>Your finaly salary is:</strong> <span id="LiquidSalary"></span></p>
     </div>
 <div class="col-sm-1"></div>
 </div>
 <div class="mx-auto" style="width: 200px;">
-<button class="btn btn-primary mt-5 btn-lg" id="calculate">Calculate</button>
+<button class="btn btn-primary mt-5 btn-lg" id="Calculate">Calculate</button>
 </div>
 <script src="script.js"></script>
 </body>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "../../db/connection.php";
 
 // Connect to MySQL database
@@ -23,7 +24,11 @@ $num_contacts = $pdo->query('SELECT COUNT(*) FROM contacts')->fetchColumn();
 
 <div class="content read">
 <?php
-require_once "../../navbars/navbaradmin.php";
+if ($_SESSION["role"] == 1) {
+    require_once "../../navbars/navbaradmin.php";
+  } else {
+    require_once "../../navbars/navbaruser.php";
+  }
 ?>
 	<h2>Contacts</h2>
     <button onclick="window.location.href='./create.php'" class="create-contact btn btn-primary m-3">Create contacts</button>
