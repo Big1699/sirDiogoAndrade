@@ -468,6 +468,6 @@
 
 
 <?php
-include 'connect.php';
+include './CMS/db/connection.php';
 $pdo = pdo_connect_mysql();
 ?>

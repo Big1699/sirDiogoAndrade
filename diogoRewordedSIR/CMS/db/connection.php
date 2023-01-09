@@ -1,9 +1,9 @@
 <?php
     function pdo_connect_mysql(){
         $DATABASE_HOST = 'localhost';
-        $DATABASE_USER = 'id20112275_diogodbuser';
-        $DATABASE_PASS = '05_Andrade_08';
-        $DATABASE_NAME = 'id20112275_diogodb';
+        $DATABASE_USER = 'root';
+        $DATABASE_PASS = '';
+        $DATABASE_NAME = 'dbsir2';
 
         try{
             return new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8',
