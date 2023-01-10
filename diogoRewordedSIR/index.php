@@ -147,11 +147,7 @@ $pdo = pdo_connect_mysql();
 
 <section id="my_experience" class="container py-5">
     <h1 class="text-center mb-5">My Experience</h1>
-    
-    <div class="card p-3 mb-5 mt-5">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col text-center align-self-center">
-            <?php
+    <?php
             $stmtexp = $pdo->prepare('SELECT * from experience');
                     $stmtexp->execute();
     
@@ -159,6 +155,12 @@ $pdo = pdo_connect_mysql();
                     $stmtexp->setFetchMode(PDO::FETCH_ASSOC);
 
                  while($dadosexp=$stmtexp->fetch()){ ?>
+    <div class="card p-3 mb-5 mt-5">
+        
+        <div class="row row-cols-1 row-cols-sm-2">
+            
+            <div class="col text-center align-self-center">
+            
                 <img src="./img/<?php echo $dadosexp['filename']?>" alt="">
             </div>
             <div class="col card-body">
@@ -174,11 +176,7 @@ $pdo = pdo_connect_mysql();
 
 <section id="education" class="container py-5">
     <h1 class="text-center mb-5">Education</h1>
-
-    <div class="card p-3 mb-5 mt-5">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col text-center align-self-center">
-            <?php
+    <?php
             $stmteduc = $pdo->prepare('SELECT * from education');
                     $stmteduc->execute();
     
@@ -186,6 +184,10 @@ $pdo = pdo_connect_mysql();
                     $stmteduc->setFetchMode(PDO::FETCH_ASSOC);
 
                  while($dadoseduc=$stmteduc->fetch()){ ?>
+    <div class="card p-3 mb-5 mt-5">
+        <div class="row row-cols-1 row-cols-sm-2">
+            <div class="col text-center align-self-center">
+            
                 <img src="./img/<?php echo $dadoseduc['filename']?>" alt="">
             </div>
             <div class="col card-body">
@@ -202,10 +204,9 @@ $pdo = pdo_connect_mysql();
 <section id="projects" class="container px-5 py-3">
     <h1 id="titulo" class="text-center mb-5">Projects</h1>
     <h3 id="titulo2" class="text-center mb-5">Some of my most important projects</h3>
-    <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col">
-           <div class="card h-100">
-           <?php
+    
+    <div class="row row-cols-1 row-cols-md-4 g-4">~
+    <?php
                     $stmtprojects = $pdo->prepare('SELECT * from projects');
                     $stmtprojects->execute();
     
@@ -213,6 +214,10 @@ $pdo = pdo_connect_mysql();
                     $stmtprojects->setFetchMode(PDO::FETCH_ASSOC);
 
                  while($dadosprojects=$stmtprojects->fetch()){ ?>
+        <div class="col">
+            
+           <div class="card h-100">
+           
                        
                 <img src="./img/<?php echo $dadosprojects['filename']?>" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -243,23 +248,20 @@ $pdo = pdo_connect_mysql();
 
 <section id="hobbies" class="container px-5 py-3">
     <h1 id="titulo" class="text-center mb-5">Hobbies</h1>
-
-    <?php
-            $stmthobbies = $pdo->prepare('SELECT * from hobbies');
-            $stmthobbies->execute();
-    
-            # definir o fetch mode
-            $stmthobbies->setFetchMode(PDO::FETCH_ASSOC);
-
-            while($dadoshobbies=$stmthobbies->fetch()){ ?>
                 <div class="mb-5">
                     <div class="card-group">
-                        <div class="card">
-                        <img class="card-img-top" src="./img/<?php echo $dadoshobbies['filename']?>" alt="Card image cap">
-                        <div class="card-body">
-                        <h5 class="card-title text-center"><?php echo $dadoshobbies['description']?></h5>
-                        </div>
-                        </div>
+                    <?php
+            $stmthobbies = $pdo->prepare('SELECT * from hobbies');
+            $stmthobbies->execute();
+            # definir o fetch mode
+            $stmthobbies->setFetchMode(PDO::FETCH_ASSOC);
+            while($dadoshobbies=$stmthobbies->fetch()){ ?>
+                    <div class="card">
+                    <img class="card-img-top" src="./img/<?php echo $dadoshobbies['filename']?>" alt="Card image cap">
+                    <div class="card-body">
+                    <h5 class="card-title text-center"><?php echo $dadoshobbies['description']?></h5>
+                    </div>
+                    </div>
                     </div>
                  </div>
             <?php }?>
