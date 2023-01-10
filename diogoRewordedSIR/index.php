@@ -251,90 +251,40 @@ $pdo = pdo_connect_mysql();
     <h3 id="titulo2" class="text-center mb-5">Some of my most important projects</h3>
     <div class="row row-cols-1 row-cols-md-4 g-4">
         <div class="col">
-          <div class="card h-100">
-            <img src="./img/ionic.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Travel Agency</h5>
-              <p class="card-text">This application was made in ionic, with the goal to simulate a travel agency, where the client can 
-                choose a destination, see the prices, chose a hotel and room and finally pay the booking.
-                One of the goals was to develop a good looking application and start working more on front end area.
-                As i said, the application was made in ionic, but the site prototype was made in figma.
-                Check more down bellow.
-            </p>
-            </div>
-            <div class="card-footer text-center">
+           <div class="card h-100">
+           <?php
+                    $stmtprojects = $pdo->prepare('SELECT * from projects');
+                    $stmtprojects->execute();
+    
+                 # definir o fetch mode
+                    $stmtprojects->setFetchMode(PDO::FETCH_ASSOC);
+
+                 while($dadosprojects=$stmtprojects->fetch()){ ?>
+                       
+                <img src="./img/<?php echo $dadosprojects['filename']?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                
+                    <h5 class="card-title"><?php echo $dadosprojects['projectname']?></h5>
+                    <p class="card-text"><?php echo $dadosprojects['description']?></p>
+                 </div>
+                <div class="card-footer text-center">
                 <div class="row">
                     <div class="col">
-                        <a href="https://www.figma.com/file/mONKcWEIqZqDIakeSi7f7Y/Travel-Agency-Landing-Page-(Community)?node-id=0%3A1">
+                        <a href="<?php echo $dadosprojects['ref2']?>">
                             <span class="icon"><i class="fa-brands fa-figma center"></i>
                             </span>
                         </a>
                     </div>
                     <div class="col">
-                        <a href="https://github.com/Big1699">
+                        <a href="<?php echo $dadosprojects['ref1']?>">
                             <span class="icon"><i class="fa-brands fa-github"></i>
                             </span>
                         </a>
                     </div>
                 </div>
-            </div>
+            </div><?php }?>
           </div>
         </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="./img/java.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Order Delevery</h5>
-              <p class="card-text">This project is a java application that the goal is to order delevery. The application has 
-                a user login, with different options for the differente users, like, order update, existing stock and more.
-                Check more down bellow.
-              </p>
-            </div>
-            <div class="card-footer text-center">
-                <a href="https://github.com/Big1699">
-                    <span class="icon"><i class="fa-brands fa-github"></i>
-                    </span>
-                </a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-              <img src="./img/java.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Sports Venue Rental</h5>
-                <p class="card-text">As the name said, this project consists in java application of sports venue rental,
-                    where the client can rental different type of sports fields, like tenis, football, roller hockey, and others.
-                    The price of the rental changes with the sports and some others conditions that were estipulated.
-                    Check more down bellow.
-                 </p>
-              </div>
-              <div class="card-footer text-center">
-                    <a href="https://github.com/Big1699">
-                        <span class="icon"><i class="fa-brands fa-github"></i>
-                        </span>
-                    </a>
-  
-              </div>
-            </div>
-          </div> <div class="col">
-            <div class="card h-100">
-              <img src="./img/c_logo.jpeg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Financial asset manager</h5>
-                <p class="card-text">This project was developed in c#, where that consists in web application that is capable to 
-                create, edit and delete financial assets, with differente type of users and their corresponding operations.
-                Check more down bellow. </p>
-              </div>
-              <div class="card-footer text-center">
-                <a href="https://github.com/Big1699">
-                    <span class="icon"><i class="fa-brands fa-github"></i>
-                    </span>
-                </a>
-              </div>
-            </div>
-          </div>
-      </div>
 </section>
 
 

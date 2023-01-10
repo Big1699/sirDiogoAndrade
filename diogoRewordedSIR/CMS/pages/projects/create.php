@@ -26,7 +26,7 @@ if (isset($_POST['uploadBtn']) == 'Criar') {
 
             if(move_uploaded_file($fileTmpPath, $dest_path))
             {
-            $stmt = $pdo->prepare('INSERT INTO projects (projectname,description,filename,ref1,ref2) VALUES (?, ?, ?, ?, ?)');
+            $stmt = $pdo->prepare('INSERT INTO projects (projectname,description,ref1,ref2,filename) VALUES (?, ?, ?, ?, ?)');
 
               $stmt->bindParam(1, $dados[0] , PDO::PARAM_STR);
               $stmt->bindParam(2, $dados[1] , PDO::PARAM_STR);
@@ -48,7 +48,7 @@ if (isset($_POST['uploadBtn']) == 'Criar') {
 
 
 <div class="content update">
-	<h2>Create Education</h2>
+	<h2>Create Project</h2>
     <form action="create.php" method="post" enctype="multipart/form-data">
     <span class="file-name">Filename:</span>
         <label for="filename">
