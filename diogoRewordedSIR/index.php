@@ -200,55 +200,69 @@ $pdo = pdo_connect_mysql();
     </div><?php }?>
     
 </section>
-
 <section id="projects" class="container px-5 py-3">
     <h1 id="titulo" class="text-center mb-5">Projects</h1>
     <h3 id="titulo2" class="text-center mb-5">Some of my most important projects</h3>
-    <div class="row row-cols-1 row-cols-lg-3 g-1 g-lg-3">
-          <?php
-           $stmtproj = $pdo->prepare('SELECT * from projects');
-           $stmtproj->execute();
+    <div class="row row-cols-1 row-cols-md-4 g-4">
 
-        # definir o fetch mode
-           $stmtproj->setFetchMode(PDO::FETCH_ASSOC);
-          while($row = $stmtproj->fetch()) {
-          ?>
-          <div class="col">
-              <a href="<?php echo $row['ref1'];?>" target="_blank" class=" cardLink">
-                <div class="card p-3 border bg-light">
-                  <img src="img/<?php echo $row['filename'];?>" class="card-img-top imgCard" alt="<?php echo $row['filename'];?>">
-                  <div class="card-body  cardBottomC">
-                    <h5 class="card-title text-center"><?php echo $row['projectname'];?></h5>
-                    <p class="card-text text-center"><?php echo $row['description'];?></p>
+    <?php
+                    $stmtpro = $pdo->prepare('SELECT * from projects');
+                    $stmtpro->execute();
+    
+                 # definir o fetch mode
+                    $stmtpro->setFetchMode(PDO::FETCH_ASSOC);
 
-                  </div>
-                </div>
-              </a>
+                 while($dadospro=$stmtpro->fetch()){ ?>
+
+
+        <div class="col">
+          <div class="card h-100">
+            <img src="./img/<?php echo $dadospro['filename'] ?>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $dadospro['projectname'] ?></h5>
+              <p class="card-text"><?php echo $dadospro['description'] ?>
+              </p>
             </div>
-            <?php } ?>
+            <div class="card-footer text-center">
+                <a href="https://github.com/Big1699">
+                    <span class="icon"><i class="fa-brands fa-github"></i>
+                    </span>
+                </a>
+            </div>
           </div>
         </div>
+        <?php } ?>
+
+
+      </div>
 </section>
 
 <section id="hobbies" class="container px-5 py-3">
     <h1 id="titulo" class="text-center mb-5">Hobbies</h1>
-                <div class="mb-5">
-                    <div class="card-group">
-                    <?php
-            $stmthobbies = $pdo->prepare('SELECT * from hobbies');
-            $stmthobbies->execute();
-            # definir o fetch mode
-            $stmthobbies->setFetchMode(PDO::FETCH_ASSOC);
-            while($dadoshobbies=$stmthobbies->fetch()){ ?>
-                    <div class="card">
-                    <img class="card-img-top" src="./img/<?php echo $dadoshobbies['filename']?>" alt="Card image cap">
-                    <div class="card-body">
-                    <h5 class="card-title text-center"><?php echo $dadoshobbies['description']?></h5>
-                    </div>
-                    </div>
-                    </div>
-                 </div>
-            <?php }?>
+    <div class="card-group">
+
+    <?php
+                    $stmthob = $pdo->prepare('SELECT * from hobbies');
+                    $stmthob->execute();
+    
+                 # definir o fetch mode
+                    $stmthob->setFetchMode(PDO::FETCH_ASSOC);
+
+                 while($dadoshob=$stmthob->fetch()){ ?>
+
+
+        <div class="card">
+          <img class="card-img-top" src="./img/<?php echo $dadoshob['filename'] ?>" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title text-center"><?php echo $dadoshob['description'] ?></h5>
+          </div>
+
+
+        </div>
+        <?php } ?>
+
+    
+      </div>
 </section>
 
 <section id="contacts_form" class="container card px-5 py-3">
@@ -317,7 +331,7 @@ $pdo = pdo_connect_mysql();
             // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
             $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
             // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
-            $phone = isset($_POST['name']) ? $_POST['name'] : '';
+            $name = isset($_POST['name']) ? $_POST['name'] : '';
             $email = isset($_POST['email']) ? $_POST['email'] : '';
             $message = isset($_POST['message']) ? $_POST['message'] : '';
             // Insert new record into the languages table
@@ -325,27 +339,27 @@ $pdo = pdo_connect_mysql();
             $stmt->execute([$name,$email,$message]);
             // Output message
             $msg = 'Created Successfully!';
-            header("location: ./index.php");
+           
         }
 
         ?>
             <form action="index.php" method="post" enctype="multipart/form-data">
                 <div class="form-group pb-3">
                     <label for="name">Name</label>
-                    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name"
                         placeholder="Enter Name">
 
                 </div>
                 <div class="form-group pb-3">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email1" placeholder="Enter Email">
+                    <input type="email" class="form-control" id="email1" placeholder="Enter Email" name="email">
                 </div>
                 <div class="form-group pb-3">
                     <label for="message">Message</label>
-                    <textarea class="form-control" id="message1" rows="3" placeholder="Hi Diogo, ..."></textarea>
+                    <textarea class="form-control" id="message1" rows="3" placeholder="Hi Diogo, ..." name="message"></textarea>
                 </div>
                 <div class="form-group button pb-3">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
                 </div>
             </form>
         </div>
@@ -363,7 +377,3 @@ $pdo = pdo_connect_mysql();
 </html>
 
 
-<?php
-include './CMS/db/connection.php';
-$pdo = pdo_connect_mysql();
-?>
