@@ -49,6 +49,9 @@
           <li class="nav-item">
             <a class="nav-link" href="../contacts/read.php">Contacts</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../../../index.php">Portefolio</a>
+          </li>
         </ul>
       </div>
     </div>
