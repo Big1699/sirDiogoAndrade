@@ -204,47 +204,31 @@ $pdo = pdo_connect_mysql();
 <section id="projects" class="container px-5 py-3">
     <h1 id="titulo" class="text-center mb-5">Projects</h1>
     <h3 id="titulo2" class="text-center mb-5">Some of my most important projects</h3>
-    
-    <div class="row row-cols-1 row-cols-md-4 g-4">~
-    <?php
-                    $stmtprojects = $pdo->prepare('SELECT * from projects');
-                    $stmtprojects->execute();
-    
-                 # definir o fetch mode
-                    $stmtprojects->setFetchMode(PDO::FETCH_ASSOC);
+    <div class="row row-cols-1 row-cols-lg-3 g-1 g-lg-3">
+          <?php
+           $stmtproj = $pdo->prepare('SELECT * from projects');
+           $stmtproj->execute();
 
-                 while($dadosprojects=$stmtprojects->fetch()){ ?>
-        <div class="col">
-            
-           <div class="card h-100">
-           
-                       
-                <img src="./img/<?php echo $dadosprojects['filename']?>" class="card-img-top" alt="...">
-                <div class="card-body">
-                
-                    <h5 class="card-title"><?php echo $dadosprojects['projectname']?></h5>
-                    <p class="card-text"><?php echo $dadosprojects['description']?></p>
-                 </div>
-                <div class="card-footer text-center">
-                <div class="row">
-                    <div class="col">
-                        <a href="<?php echo $dadosprojects['ref2']?>">
-                            <span class="icon"><i class="fa-brands fa-figma center"></i>
-                            </span>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="<?php echo $dadosprojects['ref1']?>">
-                            <span class="icon"><i class="fa-brands fa-github"></i>
-                            </span>
-                        </a>
-                    </div>
+        # definir o fetch mode
+           $stmtproj->setFetchMode(PDO::FETCH_ASSOC);
+          while($row = $stmtproj->fetch()) {
+          ?>
+          <div class="col">
+              <a href="<?php echo $row['ref1'];?>" target="_blank" class=" cardLink">
+                <div class="card p-3 border bg-light">
+                  <img src="img/<?php echo $row['filename'];?>" class="card-img-top imgCard" alt="<?php echo $row['filename'];?>">
+                  <div class="card-body  cardBottomC">
+                    <h5 class="card-title text-center"><?php echo $row['projectname'];?></h5>
+                    <p class="card-text text-center"><?php echo $row['description'];?></p>
+
+                  </div>
                 </div>
-            </div><?php }?>
+              </a>
+            </div>
+            <?php } ?>
           </div>
         </div>
 </section>
-
 
 <section id="hobbies" class="container px-5 py-3">
     <h1 id="titulo" class="text-center mb-5">Hobbies</h1>
@@ -320,7 +304,32 @@ $pdo = pdo_connect_mysql();
 
         </div>
         <div class="col form">
-            <form>
+        <?php
+        $stmtcontactMe = $pdo->prepare('SELECT * from contactsform');
+        $stmtcontactMe->execute();
+    
+        # definir o fetch mode
+        $stmtcontactMe->setFetchMode(PDO::FETCH_ASSOC);
+        $dadosform=$stmtcontactMe->fetch();
+
+        if (!empty($_POST)) {
+            // Post data not empty insert a new record
+            // Set-up the variables that are going to be inserted, we must check if the POST variables exist if not we can default them to blank
+            $id = isset($_POST['id']) && !empty($_POST['id']) && $_POST['id'] != 'auto' ? $_POST['id'] : NULL;
+            // Check if POST variable "name" exists, if not default the value to blank, basically the same for all variables
+            $phone = isset($_POST['name']) ? $_POST['name'] : '';
+            $email = isset($_POST['email']) ? $_POST['email'] : '';
+            $message = isset($_POST['message']) ? $_POST['message'] : '';
+            // Insert new record into the languages table
+            $stmt = $pdo->prepare('INSERT INTO contactsform (name,email,message) VALUES (?,?,?)');
+            $stmt->execute([$name,$email,$message]);
+            // Output message
+            $msg = 'Created Successfully!';
+            header("location: ./index.php");
+        }
+
+        ?>
+            <form action="index.php" method="post" enctype="multipart/form-data">
                 <div class="form-group pb-3">
                     <label for="name">Name</label>
                     <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"

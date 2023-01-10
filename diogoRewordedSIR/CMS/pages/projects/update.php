@@ -11,10 +11,11 @@ if (isset($_GET['id'])) {
         $filename = isset($_POST['filename']) ? $_POST['filename'] : '';
         $projectname = isset($_POST['projectname']) ? $_POST['projectname'] : '';
         $description = isset($_POST['description']) ? $_POST['description'] : '';
+        $ref1 = isset($_POST['ref1']) ? $_POST['ref1'] : '';
 
         // Update the record
-        $stmt = $pdo->prepare('UPDATE projects SET filename = ?, projectname=? ,description=? WHERE id = ?');
-        $stmt->execute([$filename,$projectname,$description, $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE projects SET filename = ?, projectname=? ,ref1=?,description=? WHERE id = ?');
+        $stmt->execute([$filename,$projectname,$ref1,$description, $_GET['id']]);
         $msg = 'Updated Successfully!';
         header("Location: read.php");
     }
@@ -41,6 +42,8 @@ if (isset($_GET['id'])) {
     <input type="text" id="projectname" name="projectname" value="<?php echo $project['projectname']?>">
     <label> description</label>
     <input type="text" id="description" name="description" value="<?php echo $project['description']?>">
+    <label> Link</label>
+    <input type="text" id="ref1" name="ref1" value="<?php echo $project['ref1']?>">
     <input type="submit" name="uploadBtn" value="Upload">
     </form>
     <?php if ($msg): ?>
