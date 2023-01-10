@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Jan-2023 às 02:15
+-- Tempo de geração: 10-Jan-2023 às 11:39
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -60,7 +60,7 @@ CREATE TABLE `contacts` (
 --
 
 INSERT INTO `contacts` (`id`, `phone`, `email`, `social`, `location`, `socialref`) VALUES
-(1, '912909140', 'diogoandrade@ipvc.pt', 'Linkedin', 'Porto', '');
+(2, '912909140', 'diogoandrade@ipvc.pt', 'Linkedin', 'Braga', 'https://www.linkedin.com/in/diogo-andrade-0b50401a4/');
 
 -- --------------------------------------------------------
 
@@ -74,6 +74,27 @@ CREATE TABLE `contactsform` (
   `email` varchar(100) NOT NULL,
   `message` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `contactsform`
+--
+
+INSERT INTO `contactsform` (`id`, `name`, `email`, `message`) VALUES
+(1, 'holland', 'diogoandrade@ipvc.pt', 'ola'),
+(2, 'holland', 'diogoandrade@ipvc.pt', 'ola'),
+(3, 'holland', 'diogoandrade@ipvc.pt', 'ola'),
+(4, 'holland', 'diogoandrade@ipvc.pt', 'ola'),
+(5, 'holland', 'diogoandrade@ipvc.pt', 'ola'),
+(6, 'holland', 'diogoandrade@ipvc.pt', 'ola'),
+(7, 'holland', 'diogoandrade@ipvc.pt', 'osl'),
+(8, 'php', 'diogoandrade@ipvc.pt', 'osl'),
+(9, 'php', 'diogoandrade@ipvc.pt', 'osl'),
+(10, 'deutch', 'diogomiguel1699@hotmail.com', 'ola'),
+(11, 'deutch', 'diogomiguel1699@hotmail.com', 'ola'),
+(12, 'deutch', 'diogomiguel1699@hotmail.com', 'ola'),
+(13, 'deutch', 'diogomiguel1699@hotmail.com', 'ola'),
+(14, 'deutch', 'diogomiguel1699@hotmail.com', 'ola'),
+(15, 'deutch', 'diogomiguel1699@hotmail.com', 'ola');
 
 -- --------------------------------------------------------
 
@@ -95,7 +116,9 @@ CREATE TABLE `education` (
 --
 
 INSERT INTO `education` (`id`, `schoolname`, `date`, `coursename`, `location`, `filename`) VALUES
-(1, 'IPVC', '2020-2023', 'Enginner', 'Viana', 'hcblogo.png');
+(2, 'Instituto Politécnico De Viana Do Castelo', '2020-2023', 'Informatic Engineer', 'Viana, Portugal ', '733c3f37aad7746a5111d5573d43bc62.jpg'),
+(3, 'Instituto Politécnico De Cávado e Ave', '2018 - 2020', 'Tesp - Informatic Secutiry and Network', 'Barcelos, Porgual', '70ae7306879c3449d3476c5c7b23b449.jpg'),
+(4, 'Escola Secundária Sá de Miranda', '2014 - 2017', 'Highschool - Informatic Systems', 'Braga, Portugal', '638c1f686bb42cd72a58371fd9387699.png');
 
 -- --------------------------------------------------------
 
@@ -111,6 +134,16 @@ CREATE TABLE `experience` (
   `location` varchar(100) NOT NULL,
   `filename` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `experience`
+--
+
+INSERT INTO `experience` (`id`, `jobname`, `date`, `companyname`, `location`, `filename`) VALUES
+(2, 'Hardware Technician', 'mar 2022 - Present', 'Chip7- Half Period', 'Famalicão, Portugal', '1065e83f0e11f81c5f4362509d0b9f83.png'),
+(3, 'Roller Hockey Coach', 'set 2021 - Present', 'Hoquei Clube de Braga - Half Period', 'Braga, Portugal', '1a9666006a635c07dbcac64aefc1f3d4.png'),
+(4, 'Goods Flow Co-Worker', 'jun 2021 - nov 2021', 'IKEA - Half Period', 'Braga, Portugal', '10d66d647a35346d6ebbdda8fb2b74fa.png'),
+(5, 'Internship Trainee', 'fev 2020 - ago 2020', 'Lucemplast LDA', 'Braga, Portugal', '59c9e6a5813bf82ae9f14922a36492c9.jpg');
 
 -- --------------------------------------------------------
 
@@ -144,17 +177,18 @@ CREATE TABLE `projects` (
   `filename` varchar(100) NOT NULL,
   `projectname` varchar(100) NOT NULL,
   `description` varchar(500) NOT NULL,
-  `ref1` varchar(500) DEFAULT NULL,
-  `ref2` varchar(500) DEFAULT NULL
+  `ref1` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `projects`
 --
 
-INSERT INTO `projects` (`id`, `filename`, `projectname`, `description`, `ref1`, `ref2`) VALUES
-(2, '91c501228133ef0174bcc05440a26f73.png', 'Travel Agency', 'This application was made in ionic, with the goal to simulate a travel agency, where the client can                      choose a destination, see the prices, chose a hotel and room and finally pay the booking.                     One of the goals was to develop a good looking application and start working more on front end area.                     As i said, the application was made in ionic, but the site prototype was made in figma.                     Check more down bellow.', NULL, NULL),
-(3, 'ade25f2cc41f4d30201b501fa15c3737.jpg', 'Order Delevery', '>This project is a java application that the goal is to order delevery. The application has                  a user login, with different options for the differente users, like, order update, existing stock and more.                 Check more down bellow.', NULL, NULL);
+INSERT INTO `projects` (`id`, `filename`, `projectname`, `description`, `ref1`) VALUES
+(2, 'icon.png', 'Travel Agency', 'This application was made in ionic, with the goal to simulate a travel agency, where the client can                      choose a destination, see the prices, chose a hotel and room and finally pay the booking.                     One of the goals was to develop a good looking application and start working more on front end area.                     As i said, the application was made in ionic, but the site prototype was made in figma.                     Check more down bellow.', 'https://github.com/Big1699'),
+(3, 'java.jpg', 'Order Delevery', 'This project is a java application that the goal is to order delevery. The application has                  a user login, with different options for the differente users, like, order update, existing stock and more.                 Check more down bellow.', 'https://github.com/Big1699'),
+(4, 'java.jpg', 'Sports Venue Rental', 'As the name said, this project consists in java application of sports venue rental,                     where the client can rental different type of sports fields, like tenis, football, roller hockey, and others.                     The price of the rental changes with the sports and some others conditions that were estipulated.                     Check more down bellow.', 'https://github.com/Big1699'),
+(7, '63836379164b3ccb07dc0a4876bd2f90.jpeg', 'Financial asset manager', 'This project was developed in c#, where that consists in web application that is capable to                  create, edit and delete financial assets, with differente type of users and their corresponding operations.                 Check more down bellow.', 'https://github.com/Big1699');
 
 -- --------------------------------------------------------
 
@@ -280,25 +314,25 @@ ALTER TABLE `aboutme`
 -- AUTO_INCREMENT de tabela `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `contactsform`
 --
 ALTER TABLE `contactsform`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `hobbies`
@@ -310,7 +344,7 @@ ALTER TABLE `hobbies`
 -- AUTO_INCREMENT de tabela `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `skillslanguages`
