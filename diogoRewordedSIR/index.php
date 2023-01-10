@@ -148,58 +148,28 @@ $pdo = pdo_connect_mysql();
 <section id="my_experience" class="container py-5">
     <h1 class="text-center mb-5">My Experience</h1>
     
-    <div class="card p-3 mb-5">
+    <div class="card p-3 mb-5 mt-5">
         <div class="row row-cols-1 row-cols-sm-2">
             <div class="col text-center align-self-center">
-                <img src="./img/chip7logo.png" alt="">
+            <?php
+            $stmtexp = $pdo->prepare('SELECT * from experience');
+                    $stmtexp->execute();
+    
+                 # definir o fetch mode
+                    $stmtexp->setFetchMode(PDO::FETCH_ASSOC);
+
+                 while($dadosexp=$stmtexp->fetch()){ ?>
+                <img src="./img/<?php echo $dadosexp['filename']?>" alt="">
             </div>
             <div class="col card-body">
-                <h5 class="card-title">Hardware Technician</h5>
-                <h6 class="card-subtitle">mar de 2022 - Present</h6>
-                <p class="card-text">Chip7 - Half Period</p>
-                <p class="card-text">Vila Nova de Famalicão, Braga</p>
+                <h5 class="card-title"><?php echo $dadosexp['jobname']?></h5>
+                <h6 class="card-subtitle"><?php echo $dadosexp['date']?></h6>
+                <p class="card-text"><?php echo $dadosexp['companyname']?></p>
+                <p class="card-text"><?php echo $dadosexp['location']?></p>
             </div>
         </div>
-    </div>
-    <div class="card p-3 mb-5">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col text-center align-self-center">
-                <img src="./img/hcblogo.png" alt="">
-            </div>
-            <div class="col card-body">
-                <h5 class="card-title">Roller Hockey Coach</h5>
-                <h6 class="card-subtitle">set de 2021 - Present</h6>
-                <p class="card-text">Hoquei Clube de Braga - Half Period</p>
-                <p class="card-text">Braga, Portugal</p>
-            </div>
-        </div>
-    </div>
-    <div class="card p-3 mb-5">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col text-center align-self-center">
-                <img src="./img/ikealogo.png" alt="">
-            </div>
-            <div class="col card-body">
-                <h5 class="card-title">Goods Flow Co-Worker</h5>
-                <h6 class="card-subtitle">jun de 2021 - nov de 2021</h6>
-                <p class="card-text">IKEA - Half Period</p>
-                <p class="card-text">Braga, Portugal</p>
-            </div>
-        </div>
-    </div>
-    <div class="card p-3 mb-5">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col text-center align-self-center">
-                <img src="./img/lucemlogo.jpg" alt="">
-            </div>
-            <div class="col card-body">
-                <h5 class="card-title">Internship Trainee</h5>
-                <h6 class="card-subtitle">fev de 2020 - ago de 2020</h6>
-                <p class="card-text">Lucemplast LDA - Trainee</p>
-                <p class="card-text">Braga, Portugal</p>
-            </div>
-        </div>
-    </div>
+    </div><?php }?>
+
 </section>
 
 <section id="education" class="container py-5">
@@ -208,42 +178,25 @@ $pdo = pdo_connect_mysql();
     <div class="card p-3 mb-5 mt-5">
         <div class="row row-cols-1 row-cols-sm-2">
             <div class="col text-center align-self-center">
-                <img src="./img/ipvclogo.jpg" alt="">
+            <?php
+            $stmteduc = $pdo->prepare('SELECT * from education');
+                    $stmteduc->execute();
+    
+                 # definir o fetch mode
+                    $stmteduc->setFetchMode(PDO::FETCH_ASSOC);
+
+                 while($dadoseduc=$stmteduc->fetch()){ ?>
+                <img src="./img/<?php echo $dadoseduc['filename']?>" alt="">
             </div>
             <div class="col card-body">
-                <h5 class="card-title">Instituto Politécnico De Viana Do Castelo</h5>
-                <h6 class="card-subtitle">2020 - Present</h6>
-                <p class="card-text">Bachelor's Degree - Informatic Engineer Student</p>
-                <p class="card-text">Viana do Castelo, Braga</p>
+                <h5 class="card-title"><?php echo $dadoseduc['schoolname']?></h5>
+                <h6 class="card-subtitle"><?php echo $dadoseduc['date']?></h6>
+                <p class="card-text"><?php echo $dadoseduc['coursename']?></p>
+                <p class="card-text"><?php echo $dadoseduc['location']?></p>
             </div>
         </div>
-    </div>
-    <div class="card p-3 mb-5">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col text-center align-self-center">
-                <img src="./img/ipca-logo.jpg" alt="">
-            </div>
-            <div class="col card-body">
-                <h5 class="card-title">Instituto Politécnico De Cávado e Ave</h5>
-                <h6 class="card-subtitle">2018 - 2020</h6>
-                <p class="card-text">Tesp - Informatic Secutiry and Network</p>
-                <p class="card-text">Barcelos, Porgual</p>
-            </div>
-        </div>
-    </div>
-    <div class="card p-3 mb-5">
-        <div class="row row-cols-1 row-cols-sm-2">
-            <div class="col text-center align-self-center">
-                <img src="./img/sa.png" alt="">
-            </div>
-            <div class="col card-body">
-                <h5 class="card-title">Escola Secundária Sá de Miranda</h5>
-                <h6 class="card-subtitle">2014 - 2017</h6>
-                <p class="card-text">Highschool - Informatic Systems</p>
-                <p class="card-text">Braga, Portugal</p>
-            </div>
-        </div>
-    </div>
+    </div><?php }?>
+    
 </section>
 
 <section id="projects" class="container px-5 py-3">
