@@ -24,7 +24,7 @@
 <body>
 <?php
 require './CMS/db/connection.php';
-$pdo=pdo_connect_mysql();
+$pdo = pdo_connect_mysql();
 ?>
 
 <!-- Navbar -->
@@ -340,60 +340,68 @@ $pdo=pdo_connect_mysql();
 
 <section id="hobbies" class="container px-5 py-3">
     <h1 id="titulo" class="text-center mb-5">Hobbies</h1>
-    <div class="card-group">
-        <div class="card">
-          <img class="card-img-top" src="./img/2.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title text-center">Last Season</h5>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="./img/3.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title text-center">European Club Champion</h5>
-          </div>
-        </div>
-        <div class="card">
-          <img class="card-img-top" src="./img/4.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title text-center">National Champion</h5>
-          </div>
-        </div>
-      </div>
+
+    <?php
+            $stmthobbies = $pdo->prepare('SELECT * from hobbies');
+            $stmthobbies->execute();
+    
+            # definir o fetch mode
+            $stmthobbies->setFetchMode(PDO::FETCH_ASSOC);
+
+            while($dadoshobbies=$stmthobbies->fetch()){ ?>
+                <div class="mb-5">
+                    <div class="card-group">
+                        <div class="card">
+                        <img class="card-img-top" src="./img/<?php echo $dadoshobbies['filename']?>" alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title text-center"><?php echo $dadoshobbies['description']?></h5>
+                        </div>
+                        </div>
+                    </div>
+                 </div>
+            <?php }?>
 </section>
 
 <section id="contacts_form" class="container card px-5 py-3">
     <h2 class="text-center my-5">Contact Me:</h2>
     <div class="row">
         <div class="col contact">
+        <?php
+        $stmtcontacts = $pdo->prepare('SELECT * from contacts');
+        $stmtcontacts->execute();
+    
+        # definir o fetch mode
+        $stmtcontacts->setFetchMode(PDO::FETCH_ASSOC);
+        $dadoscontacts=$stmtcontacts->fetch();
+        ?>
             <ul class="h4" style="padding-left: 0;">
-                <a href="tel:912909140">
+                <a href="tel:<?php echo $dadoscontacts['phone'] ?>">
                     <li class="mb-4">
                         <span class="icon">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                         </span>
-                        <span class="text"> 912909140</span>
+                        <span class="text"> <?php echo $dadoscontacts['phone'] ?></span>
                     </li>
                 </a>
-                <a href="mailto:diogoandrade@ipvc.pt">
+                <a href="mailto:d<?php echo $dadoscontacts['email'] ?>">
                     <li class="mb-4">
                         <span class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         </span>
-                        <span class="text"> diogoandrade@ipvc.pt</span>
+                        <span class="text"> <?php echo $dadoscontacts['email'] ?></span>
                     </li>
                 </a>
-                <a href="https://www.linkedin.com/in/diogo-andrade-0b50401a4/">
+                <a href="<?php echo $dadoscontacts['socialref'] ?>">
                     <li class="mb-4">
                         <span class="icon"><i class="fa-brands fa-linkedin"></i>
                         </span>
-                        <span class="text"> Linkedin.com</span>
+                        <span class="text"> <?php echo $dadoscontacts['social'] ?></span>
                     </li>
                 </a>
                 <a href="">
                     <li class="mb-4">
                         <span class="icon"><i class="fa-sharp fa-solid fa-location-dot"></i>
                         </span>
-                        <span class="text"> Braga, Portugal</span>
+                        <span class="text"> <?php echo $dadoscontacts['location'] ?></span>
                     </li>
                 </a>
                
@@ -401,7 +409,7 @@ $pdo=pdo_connect_mysql();
 
             <!--Google map-->
         <div id="map-container-google-3" class="z-depth-1-half map-container-3">
-            <iframe src="https://maps.google.com/maps?q=Braga&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+            <iframe src="https://maps.google.com/maps?q=<?php echo $dadoscontacts['location'] ?>&t=k&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
             style="border:0" allowfullscreen></iframe>
         </div>
 

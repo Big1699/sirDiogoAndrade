@@ -26,11 +26,13 @@ if (isset($_POST['uploadBtn']) == 'Criar') {
 
             if(move_uploaded_file($fileTmpPath, $dest_path))
             {
-            $stmt = $pdo->prepare('INSERT INTO projects (projectname,description,filename) VALUES (?, ?, ?)');
+            $stmt = $pdo->prepare('INSERT INTO projects (projectname,description,filename,ref1,ref2) VALUES (?, ?, ?, ?, ?)');
 
               $stmt->bindParam(1, $dados[0] , PDO::PARAM_STR);
               $stmt->bindParam(2, $dados[1] , PDO::PARAM_STR);
-              $stmt->bindParam(3, $newFileName);
+              $stmt->bindParam(3, $dados[2] , PDO::PARAM_STR);
+              $stmt->bindParam(4, $dados[3] , PDO::PARAM_STR);
+              $stmt->bindParam(5, $newFileName);
               $stmt->execute();
               header("location: ./read.php");
 
@@ -56,6 +58,10 @@ if (isset($_POST['uploadBtn']) == 'Criar') {
         <input type="text" name="projectname" placeholder="projectname" id="projectname">
         <label for="description">description</label>
         <input type="text" name="description" placeholder="description" id="description">
+        <label for="ref1">First Link</label>
+        <input type="text" name="ref1" placeholder="ref1" id="ref1">
+        <label for="ref2">Second Link</label>
+        <input type="text" name="ref2" placeholder="ref2" id="ref2">
         <input type="submit" name="uploadBtn" value="Criar">
     </form>
     <?php if ($msg): ?>

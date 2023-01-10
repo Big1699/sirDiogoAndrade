@@ -32,11 +32,13 @@ if (isset($_GET['id'])) {
 <div class="content update">
 	<h2>Update project #<?=$project['id']?></h2>
     <form action="update.php?id=<?=$project['id']?>" method="post">
-    <label> filename</label>
-    <input type="text" id="filename" name="filename" value="<?php echo $project['filename']?>">
+    <span class="file-name">Filename:</span>
+        <label for="filename">
+          <input type="file" id="filename" name="filename">
+        </label>
     <label> description</label>
     <input type="text" id="description" name="description" value="<?php echo $project['description']?>">
-    <input type="submit" value="Update">
+    <input type="submit" name="uploadBtn" value="Update">
     </form>
     <?php if ($msg): ?>
     <p><?=$msg?></p>

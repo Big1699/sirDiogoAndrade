@@ -40,6 +40,7 @@ if ($_SESSION["role"] == 1) {
                 <th>Email</th>
                 <th>Social</th>
                 <th>Location</th>
+                <th>SocialRef</th>
             </tr>
         </thead>
         <tbody>
@@ -50,6 +51,7 @@ if ($_SESSION["role"] == 1) {
                 <td><?=$contact['email']?></td>
                 <td><?=$contact['social']?></td>
                 <td><?=$contact['location']?></td>
+                <td><?=$contact['socialref']?></td>
                 <td class="actions">
                 <?php echo "<a href=\"update.php?id={$contact['id']}\" class=\"edit\"><button type='button' class='btn btn-primary m-4'>Edit</button></a>"?>
                 <?php echo "<a href=\"delete.php?id={$contact['id']}\" class=\"trash\"><button type='button' class='btn btn-primary m-4'>Delete</button> </a>"?>

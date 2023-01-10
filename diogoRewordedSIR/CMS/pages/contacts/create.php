@@ -14,9 +14,10 @@ if (!empty($_POST)) {
     $email = isset($_POST['email']) ? $_POST['email'] : '';
     $social = isset($_POST['social']) ? $_POST['social'] : '';
     $location = isset($_POST['location']) ? $_POST['location'] : '';
+    $socialref = isset($_POST['socialref']) ? $_POST['socialref'] : '';
     // Insert new record into the languages table
-    $stmt = $pdo->prepare('INSERT INTO contacts (phone,email,social,location) VALUES (?,?,?,?)');
-    $stmt->execute([$phone,$email,$social,$location]);
+    $stmt = $pdo->prepare('INSERT INTO contacts (phone,email,social,location,socialref) VALUES (?,?,?,?,?)');
+    $stmt->execute([$phone,$email,$social,$location,$socialref]);
     // Output message
     $msg = 'Created Successfully!';
     header("location: ./read.php");
@@ -35,6 +36,8 @@ if (!empty($_POST)) {
         <input type="text" name="social" placeholder="social" id="social">
         <label for="location">location</label>
         <input type="text" name="location" placeholder="location" id="location">
+        <label for="socialref">socialref</label>
+        <input type="text" name="socialref" placeholder="socialref" id="socialref">
         <input type="submit" value="Create">
     </form>
     <?php if ($msg): ?>

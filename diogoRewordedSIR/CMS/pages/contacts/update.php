@@ -12,10 +12,11 @@ if (isset($_GET['id'])) {
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $social = isset($_POST['social']) ? $_POST['social'] : '';
         $location = isset($_POST['location']) ? $_POST['location'] : '';
+        $socialref = isset($_POST['socialref']) ? $_POST['socialref'] : '';
 
         // Update the record
-        $stmt = $pdo->prepare('UPDATE contacts SET phone = ?, email=?,social=?,location=? WHERE id = ?');
-        $stmt->execute([$phone,$email,$social,$location, $_GET['id']]);
+        $stmt = $pdo->prepare('UPDATE contacts SET phone = ?, email=?,social=?,location=?,socialref=? WHERE id = ?');
+        $stmt->execute([$phone,$email,$social,$location,$socialref, $_GET['id']]);
         $msg = 'Updated Successfully!';
         header("Location: read.php");
     }

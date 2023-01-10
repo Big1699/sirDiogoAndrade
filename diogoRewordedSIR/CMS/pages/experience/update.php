@@ -43,9 +43,11 @@ if (isset($_GET['id'])) {
     <input type="text" id="companyname" name="companyname" value="<?php echo $experince['companyname']?>">
     <label> location</label>
     <input type="text" id="location" name="location" value="<?php echo $experince['location']?>">
-    <label> filename</label>
-    <input type="text" id="filename" name="filename" value="<?php echo $experince['filename']?>">
-     <input type="submit" value="Update">
+    <span class="file-name">Filename:</span>
+        <label for="filename">
+          <input type="file" id="filename" name="filename">
+        </label>
+        <input type="submit" name="uploadBtn" value="Update">
     </form>
     <?php if ($msg): ?>
     <p><?=$msg?></p>
